@@ -1,0 +1,191 @@
+# =============================================================================
+# Dynamic PERFORMANCE+ Configuration File
+# =============================================================================
+# This configuration file allows fine-tuning of server optimization features.
+# Each section controls a specific aspect of performance enhancement.
+#
+# Plugin Version: 1.0.0
+# Minecraft Version: 1.21.x
+# Compatible Servers: Paper, Spigot, Purpur
+#
+# Changes take effect after /dp reload or server restart.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# CHUNK MANAGEMENT OPTIMIZATIONS
+# -----------------------------------------------------------------------------
+chunks:
+  # Enable asynchronous chunk loading to reduce main thread lag
+  async_loading: true
+
+  # Maximum distance (in blocks) for chunk unloading from players
+  unload_distance: 100
+
+  # Enable preloading of chunks around players for smoother movement
+  preload_enabled: true
+
+  # Radius (in chunks) for preloading around players
+  preload_radius: 3
+
+  # Maximum chunks to keep loaded per player (0 = unlimited)
+  max_loaded_chunks: 0
+
+  # Interval (in ticks) for chunk management checks
+  management_interval: 600  # 30 seconds
+
+# -----------------------------------------------------------------------------
+# ENTITY AND MOB OPTIMIZATIONS
+# -----------------------------------------------------------------------------
+entities:
+  # Distance (in blocks) beyond which entities are culled from processing
+  cull_distance: 50
+
+  # Enable AI throttling to reduce entity processing load
+  ai_throttle: true
+
+  # Maximum entities per chunk before aggressive culling
+  max_entities_per_chunk: 50
+
+  # Enable automatic entity cleanup (removes grounded arrows, items, etc.)
+  auto_cleanup: true
+
+  # Interval (in ticks) for entity cleanup routines
+  cleanup_interval: 1200  # 1 minute
+
+  # Maximum age (in ticks) for items before cleanup
+  max_item_age: 6000  # 5 minutes
+
+  # Maximum age (in ticks) for arrows before cleanup
+  max_arrow_age: 1200  # 1 minute
+
+# -----------------------------------------------------------------------------
+# CLEANER FEATURES
+# -----------------------------------------------------------------------------
+cleaner:
+  # Hostile Mob Auto-Cleaner
+  hostile_mob_cleaner:
+    enabled: true
+    interval: 600  # ticks (30 seconds)
+    broadcast: true  # Announce cleanups
+
+  # Dropped Block & Item Cleaner
+  dropped_item_cleaner:
+    enabled: true
+    interval: 1200  # ticks (1 minute)
+    broadcast: true  # Announce cleanups
+    exclude_valuable: true  # Don't remove diamonds, emeralds, etc.
+
+  # Countdown before cleanup
+  countdown:
+    enabled: true
+    format:
+      10: "&6⚠ &eCleanup in &610s!"
+      5: "&6⚠ &eCleanup in &65s!"
+      4: "&6⚠ &eCleanup in &64s!"
+      3: "&6⚠ &eCleanup in &c3s!"
+      2: "&6⚠ &eCleanup in &c2s!"
+      1: "&6⚠ &eCleanup in &c1s!"
+      0: "&a✔ Cleanup completed!"
+
+# -----------------------------------------------------------------------------
+# EXPLOSION OPTIMIZATIONS
+# -----------------------------------------------------------------------------
+explosions:
+  # Enable explosion optimizations
+  enabled: true
+
+  # Limit the number of blocks affected by explosions
+  limit_blocks: true
+
+  # Maximum blocks that can be affected by a single explosion
+  max_blocks_affected: 100
+
+  # Disable explosion particle effects for better performance
+  disable_particles: true
+
+  # Prevent fire damage from explosions
+  disable_fire_damage: false
+
+  # Maximum explosions per second (0 = unlimited)
+  max_explosions_per_second: 5
+
+# -----------------------------------------------------------------------------
+# HOPPER OPTIMIZATIONS
+# -----------------------------------------------------------------------------
+hoppers:
+  # Enable hopper transfer rate optimization
+  optimize_transfer: true
+
+  # Maximum items per hopper transfer tick
+  max_transfer_rate: 8
+
+  # Enable active hopper monitoring to reduce tick impact
+  monitor_active_hoppers: true
+
+  # Interval (in ticks) for hopper performance checks
+  check_interval: 100
+
+# -----------------------------------------------------------------------------
+# FALLING BLOCK OPTIMIZATIONS
+# -----------------------------------------------------------------------------
+falling_blocks:
+  # Enable optimized falling block physics (always enabled for efficiency)
+  optimized_physics: true
+
+  # Maximum falling blocks per chunk before limiting
+  max_per_chunk: 20
+
+  # Enable fast falling for optimized blocks
+  fast_falling: true
+
+# -----------------------------------------------------------------------------
+# PERFORMANCE MONITORING
+# -----------------------------------------------------------------------------
+performance:
+  # Target TPS for automatic optimizations
+  target_tps: 20.0
+
+  # Target MSPT (milliseconds per tick) for triggering optimizations
+  target_mspt: 50.0
+
+  # Interval (in ticks) for performance monitoring
+  monitor_interval: 20  # 1 second
+
+  # Enable automatic optimization triggers based on performance metrics
+  auto_triggers: true
+
+  # TPS threshold below which optimizations are automatically activated
+  auto_trigger_tps_threshold: 18.0
+
+  # MSPT threshold above which optimizations are automatically activated
+  auto_trigger_mspt_threshold: 60.0
+
+# -----------------------------------------------------------------------------
+# ADMIN COMMANDS SETTINGS
+# -----------------------------------------------------------------------------
+commands:
+  # Enable admin commands (requires permission: dynamicperformance.admin)
+  enabled: true
+
+  # Command prefix (default: /dp)
+  prefix: "dp"
+
+  # Enable performance statistics in /dp stats command
+  show_detailed_stats: true
+
+# -----------------------------------------------------------------------------
+# DEBUG AND LOGGING
+# -----------------------------------------------------------------------------
+debug:
+  # Enable debug logging for troubleshooting
+  enabled: false
+
+  # Log level: INFO, WARNING, ERROR, DEBUG
+  log_level: "INFO"
+
+  # Log optimization actions
+  log_optimizations: false
+
+# =============================================================================
+# END OF CONFIGURATION
+# =============================================================================
