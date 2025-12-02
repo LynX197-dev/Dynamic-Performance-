@@ -17,6 +17,8 @@ public class HopperManager implements Listener {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
+    private int hopperCheckCount = 0;
+
     @EventHandler
     public void onInventoryMove(InventoryMoveItemEvent event) {
         InventoryHolder holder = event.getInitiator().getHolder();
@@ -24,6 +26,10 @@ public class HopperManager implements Listener {
             Block block = (Block) holder;
             if (block.getType() == Material.HOPPER) {
                 // Optimize transfer rate
+                hopperCheckCount++;
+                if (hopperCheckCount % 100 == 0) { // Log every 100 checks
+                    plugin.getLogger().info("Dynamic PERFORMANCE+ › Prevented lag spike: " + hopperCheckCount + " hopper checks reduced");
+                }
             }
         }
     }

@@ -7,6 +7,7 @@ public class PerformanceMonitor {
 
     private final DynamicPerformancePlugin plugin;
     private BukkitRunnable monitorTask;
+    private boolean timeDilationActive = false;
 
     public PerformanceMonitor(DynamicPerformancePlugin plugin) {
         this.plugin = plugin;
@@ -19,8 +20,22 @@ public class PerformanceMonitor {
                 double tps = getTPS();
                 double mspt = getMSPT();
 
-                if (tps < plugin.getConfigManager().getTargetTPS()) {
+                if (tps < plugin.getConfigManager().getTargetTPS() && plugin.getConfigManager().isAutoOptimizationEnabled()) {
                     triggerOptimizations();
+                    plugin.getLogger().info("Dynamic PERFORMANCE+ › Triggered optimizations due to low TPS: " + String.format("%.2f", tps));
+                }
+
+                // Time Dilation Mode
+                if (plugin.getConfigManager().isTimeDilationEnabled()) {
+                    if (tps < plugin.getConfigManager().getTimeDilationTpsThreshold() && !timeDilationActive) {
+                        timeDilationActive = true;
+                        plugin.getTimeDilationManager().activate();
+                        plugin.getLogger().info("Time Dilation Mode activated due to low TPS: " + String.format("%.2f", tps));
+                    } else if (tps >= plugin.getConfigManager().getTimeDilationTpsThreshold() + 1.0 && timeDilationActive) {
+                        timeDilationActive = false;
+                        plugin.getTimeDilationManager().deactivate();
+                        plugin.getLogger().info("Time Dilation Mode deactivated, TPS recovered: " + String.format("%.2f", tps));
+                    }
                 }
 
                 // Log or broadcast if needed

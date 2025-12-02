@@ -1,4 +1,4 @@
-ackage com.itzlynx197.dynamicperformance.managers;
+package com.itzlynx197.dynamicperformance.managers;
 
 import org.bukkit.Chunk;
 import org.bukkit.World;
@@ -24,13 +24,31 @@ public class ChunkManager {
     }
 
     public void unloadChunks() {
+        int unloaded = 0;
         for (World world : plugin.getServer().getWorlds()) {
             for (Chunk chunk : world.getLoadedChunks()) {
                 if (shouldUnload(chunk)) {
                     chunk.unload();
+                    unloaded++;
                 }
             }
         }
+        if (unloaded > 0) {
+            plugin.getLogger().info("Dynamic PERFORMANCE+ › Optimized " + unloaded + " chunk sections due to TPS drop");
+        }
+    }
+
+    public void unloadDeadChunks() {
+        int unloaded = 0;
+        for (World world : plugin.getServer().getWorlds()) {
+            for (Chunk chunk : world.getLoadedChunks()) {
+                if (shouldUnload(chunk)) {
+                    chunk.unload();
+                    unloaded++;
+                }
+            }
+        }
+        plugin.getLogger().info("Unloaded " + unloaded + " dead chunks.");
     }
 
     private boolean shouldUnload(Chunk chunk) {
