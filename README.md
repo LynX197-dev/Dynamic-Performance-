@@ -1,5 +1,5 @@
 # Dynamic PERFORMANCE+
-
+[![Download on Modrinth](https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_64h.png)](https://modrinth.com/plugin/dynamic-performance+)
 ## Overview
 
 Dynamic PERFORMANCE+ is a high-performance Minecraft server optimization plugin for Paper-based servers 1.21.x. It is engineered to minimize tick lag, enhance server responsiveness, and maintain consistent TPS by intelligently managing server systems without altering core gameplay mechanics such as physics or entity behavior.
