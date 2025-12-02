@@ -2,79 +2,59 @@
 
 ## Overview
 
-Dynamic PERFORMANCE+ is a Minecraft server optimization plugin for Paper-based servers (1.21.x) focused on reducing tick lag and improving performance through asynchronous task handling and intelligent system management. It aims to maintain consistent TPS without altering fundamental game mechanics such as physics or entity behavior.
-
-
-<details>
-<summary>RESULTS CHART</summary>
-*NOTE: These all results were collected with the recommended ecosystem given below.*
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-![RESULTS CHART](https://cdn.modrinth.com/data/cached_images/7469835933d89340400ff05557970c99f480fb52_0.webp)
-
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-**Higher Entity Cleanup and Chunk Loading -> Worse Performance**
-
-**Higher TPS -> Best Performance**
-</details>
-
+Dynamic PERFORMANCE+ is a high-performance Minecraft server optimization plugin for Paper-based servers 1.21.x. It is engineered to minimize tick lag, enhance server responsiveness, and maintain consistent TPS by intelligently managing server systems without altering core gameplay mechanics such as physics or entity behavior.
 
 ## Core Optimizations
 
-- Asynchronous Task Scheduling: Offloads intensive operations such as chunk management and cleanup to async threads to minimize main-thread load.
+- **Asynchronous Task Scheduling:** Offloads intensive operations, including chunk management and cleanup routines, to asynchronous threads, reducing main-thread load and improving server responsiveness.
 
-- Chunk Management: Dynamically unloads and loads chunks based on player proximity and activity using an optimized queue system.
+- **Chunk Management:** Dynamically loads and unloads chunks based on player proximity and activity, utilizing an optimized queue system to balance performance and gameplay experience.
 
-- Entity & Mob Processing: Implements distance-based culling and conditional AI throttling to reduce unnecessary entity tick updates.
+- **Entity & Mob Processing:** Employs distance-based culling and conditional AI throttling to limit unnecessary entity updates, ensuring smoother performance even in entity-heavy environments.
 
-- Falling Block Handling: Keeps falling block entities fully functional while optimizing their physics updates for smoother performance.
+- **Falling Block Optimization:** Maintains full functionality of falling block entities while streamlining physics calculations for enhanced server efficiency.
 
-- Explosion Optimization: Limits simultaneous explosion calculations and manages block/particle effects to lower CPU overhead.
+- **Explosion Optimization:** Regulates simultaneous explosion calculations and manages block and particle effects, significantly lowering CPU usage during high-load scenarios.
 
-- Hopper Transfer Control: Adjusts hopper transfer rates and timing intervals to prevent tick slowdowns in large hopper chains.
+- **Hopper Transfer Optimization:** Adjusts hopper transfer rates and processing intervals to prevent tick slowdowns in large-scale item transportation systems.
 
-- Automated Cleanup: Periodically removes untracked entities and dropped items to reclaim performance.
+- **Automated Cleanup:** Periodically removes untracked entities, dropped items, and expired projectiles to reclaim server resources and maintain optimal performance.
 
-- Performance Monitoring: Tracks MSPT and TPS in real-time with configurable thresholds that can trigger auto-optimizations.
+- **Performance Monitoring:** Continuously tracks MSPT, TPS, and entity counts with configurable thresholds, automatically triggering optimizations when performance metrics fall below defined standards.
 
-## Commands & Configuration
+## Admin Commands
 
-All settings are configurable through a structured YAML file.
-Admin commands (prefixed with /dp) include:
+All `/dp` commands require the `dynamicperformance.admin` permission.
 
-/dp optimize – Triggers manual optimization cycles.
+- **`/dp optimize`** – Applies one-click optimizations, including clearing lag, unloading chunks, reducing ticking loads, minimizing redstone activity, and throttling mob AI.
 
-/dp stats – Displays current MSPT, TPS, and entity counts.
+- **`/dp entities`** – Cleans up entities to free server resources and improve performance.
 
-/dp reload – Reloads the configuration at runtime.
+- **`/dp chunks`** – Manages chunk loading and unloading for optimal server performance.
 
-/dp clean – Removes dropped entities and unused chunks.
+- **`/dp stats`** – Displays real-time performance statistics such as TPS, memory usage, and entity counts.
+
+- **`/dp reload`** – Reloads the plugin configuration without restarting the server.
+
+- **`/dp boost`** – Activates boost mode for a configurable duration, temporarily enhancing server performance by reducing AI, redstone, and entity load.
 
 ## Compatibility
 
-Tested on:
+- Fully compatible with Paper, Purpur, and Spigot servers (Minecraft 1.21.x).  
+- Requires no client-side modifications.
 
-Paper, Purpur, and Spigot servers (Minecraft 1.21.x).
-No client modifications are required.
+## Key Features
 
-## Notes
+- Intelligent load balancing to prevent server lag.  
+- Adaptive AI throttling for high-density mob areas.  
+- Configurable thresholds for automated optimizations.  
+- Supports large-scale farms, redstone contraptions, and complex builds.  
 
-Dynamic PERFORMANCE+ focuses on balancing optimization with gameplay integrity. It does not disable key mechanics or remove content — instead, it tunes existing systems to reduce CPU and memory usage.
+## Recommended Ecosystem
 
-## Recommended Ecosystem (Optional)
+For enhanced server management, Dynamic PERFORMANCE+ integrates seamlessly with:
 
-For best results, this plugin integrates well with:
-
-[Dynamic CORE+](https://modrinth.com/plugin/dynamic-core+)
- — Essentials alternative
-
-[Dynamic AC+](https://modrinth.com/plugin/dynamic-ac+)
- — Anti-cheat and movement limiter
-
-[Dynamic LIMITER+](https://modrinth.com/plugin/dynamic-limiter+)
- — Entity and redstone limiter
-
-[Dynamic BACKUP+](https://modrinth.com/plugin/dynamic-backup+)
- — Scheduled backup system
+- [Dynamic CORE+](https://modrinth.com/plugin/dynamic-core+) — Comprehensive Essentials replacement.  
+- [Dynamic AC+](https://modrinth.com/plugin/dynamic-ac+) — Advanced anti-cheat and movement regulation.  
+- [Dynamic LIMITER+](https://modrinth.com/plugin/dynamic-limiter+) — Entity, redstone, and system limiter.
+- [Dynamic BACKUP+](https://modrinth.com/plugin/dynamic-backup+) — Scheduled backup system
