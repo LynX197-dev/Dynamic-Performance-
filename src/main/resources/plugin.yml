@@ -12,3 +12,11 @@ commands:
     description: Admin commands for Dynamic PERFORMANCE+
     usage: /dp <subcommand>
     permission: dynamicperformance.admin
+
+permissions:
+  dynamicperformance.admin:
+    description: Allows access to all Dynamic PERFORMANCE+ commands
+    default: op
+  dynamicperformance.optimize:
+    description: Allows using the one-click optimize command
+    default: op

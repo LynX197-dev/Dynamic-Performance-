@@ -3,11 +3,6 @@
 # =============================================================================
 # This configuration file allows fine-tuning of server optimization features.
 # Each section controls a specific aspect of performance enhancement.
-#
-# Plugin Version: 1.0.0
-# Minecraft Version: 1.21.x
-# Compatible Servers: Paper, Spigot, Purpur
-#
 # Changes take effect after /dp reload or server restart.
 # =============================================================================
 
@@ -109,6 +104,30 @@ explosions:
   # Maximum explosions per second (0 = unlimited)
   max_explosions_per_second: 5
 
+  # TNT Optimization Settings
+  tnt_optimization:
+    enabled: true
+    max_tnt_per_batch: 50
+    power_scaling_factor: 1.0
+    limit_block_updates: true
+    safety_system:
+      enabled: true
+      show_messages: true
+
+  # TNT Cannon Performance Stabilizer
+  tnt_cannon_stabilizer:
+    enabled: true
+    async_simulations: true
+    explosion_delay_ticks: 1  # Delay between queued explosions (1-5 recommended)
+    max_explosions_per_tick: 10  # Maximum explosions processed per tick
+
+  # TNT Fusion Optimization (New TNT Physics Mode)
+  tnt_fusion:
+    enabled: true
+    fusion_radius: 3.0  # Radius to search for nearby TNT to fuse
+    power_multiplier: 1.0  # Multiplier for fused explosion power
+    enable_notifications: true  # Show fusion messages to ops/admins
+
 # -----------------------------------------------------------------------------
 # HOPPER OPTIMIZATIONS
 # -----------------------------------------------------------------------------
@@ -160,6 +179,9 @@ performance:
   # MSPT threshold above which optimizations are automatically activated
   auto_trigger_mspt_threshold: 60.0
 
+  # Enable dynamic mode for automatic performance booster
+  auto_optimization: true
+
 # -----------------------------------------------------------------------------
 # ADMIN COMMANDS SETTINGS
 # -----------------------------------------------------------------------------
@@ -185,6 +207,79 @@ debug:
 
   # Log optimization actions
   log_optimizations: false
+
+# -----------------------------------------------------------------------------
+# BOOST MODE SETTINGS
+# -----------------------------------------------------------------------------
+boost:
+  # Duration (in seconds) for boost mode (30-60 recommended)
+  duration: 30
+
+  # Freeze AI of passive mobs during boost
+  freeze_passive_ai: true
+
+  # Slow down hopper transfer rates during boost
+  slow_hoppers: true
+
+  # Reduce redstone processing during boost
+  reduce_redstone: true
+
+  # Purge unused entities during boost
+  purge_entities: true
+
+  # Force garbage collection during boost
+  clean_gc: true
+
+# -----------------------------------------------------------------------------
+# TIME DILATION MODE
+# -----------------------------------------------------------------------------
+time_dilation:
+  enabled: true
+  tps_threshold: 15.0
+  slow_growth: true
+
+  disable_mob_ai: true
+
+# -----------------------------------------------------------------------------
+# REDSTONE UPDATE LIMITER
+# -----------------------------------------------------------------------------
+redstone:
+  update_limiter:
+    enabled: true
+    observer_activations_per_second: 100
+    piston_events_per_second: 50
+    block_updates_per_tick: 1000
+
+# -----------------------------------------------------------------------------
+# MOB FARM DENSITY CONTROLLER (under entities)
+# -----------------------------------------------------------------------------
+entities:
+  # ... existing entities config ...
+  mob_farm_controller:
+    enabled: true
+    max_mobs_per_radius: 10
+    radius: 7
+    action: "freeze_ai"  # freeze_ai, kill_extras, or disable_pathfinding
+    disable_pathfinding: true
+
+# ----------------------------------------------------------------------------
+# AUTO-UNLOAD IDLE WORLDS
+# ----------------------------------------------------------------------------
+world_unload:
+  enable: true
+  check_interval_minutes: 5
+
+# -----------------------------------------------------------------------------
+# FARM OPTIMIZER
+# -----------------------------------------------------------------------------
+farm_optimizer:
+  enabled: true
+  mob_grinder_threshold: 10
+  villager_breeder_threshold: 5
+  crop_farm_threshold: 100
+  sugarcane_threshold: 50
+  bamboo_threshold: 50
+  sorter_system_threshold: 20
 
 # =============================================================================
 # END OF CONFIGURATION
